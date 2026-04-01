@@ -4,6 +4,8 @@
 
 #include "PluginTemplateEditor.generated.h"
 
+
+
 UCLASS()
 class PLUGINTEMPLATEEDITOR_API UPluginTemplateEditor : public UObject
 {

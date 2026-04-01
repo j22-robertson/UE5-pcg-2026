@@ -2,7 +2,7 @@
 #include "PluginTemplateEditor.h"
 
 IMPLEMENT_MODULE(FPluginTemplateEditorModule, FPluginTemplateEditor)
-
+DEFINE_LOG_CATEGORY(LogPlugin);
 void FPluginTemplateEditorModule::StartupModule()
 {
 	// Add OnPostEngineInit delegate.
@@ -17,12 +17,8 @@ void FPluginTemplateEditorModule::ShutdownModule()
 
 void FPluginTemplateEditorModule::OnPostEngineInit()
 {
+	PluginTemplateEditor.Reset( NewObject<UPluginTemplateEditor>());
+	PluginTemplateEditor->Init();
+	
     // Do post engine stuff here
 }
-
-#if (ENGINE_MAJOR_VERSION == 5)
-FString FPluginTemplateEditorModule::GetReferencerName() const
-{
-	return TEXT("PluginTemplateModuleGCObject");
-}
-#endif

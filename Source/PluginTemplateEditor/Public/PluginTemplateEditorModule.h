@@ -2,7 +2,8 @@
 
 #include "CoreMinimal.h"
 #include "Modules/ModuleManager.h"
-
+class UPluginTemplateEditor;
+DECLARE_LOG_CATEGORY_EXTERN(LogPlugin, Log, All)
 class PLUGINTEMPLATEEDITOR_API FPluginTemplateEditorModule : public IModuleInterface
 {
 
@@ -13,7 +14,7 @@ public:
 	void ShutdownModule() override;
 
 #if (ENGINE_MAJOR_VERSION == 5)
-	FString GetReferencerName() const override;
+	virtual FString GetReferencerName() const {return TEXT("FPluginTemplateEditor");}
 #endif
 
 protected:
@@ -24,7 +25,8 @@ protected:
 	void OnPostEngineInit();
 
 private:
-
+	//TStrongObjectPtr<UPluginTemplateEditor> plugin;
 	/** OnPostEngineInit delegate handler. */
 	FDelegateHandle OnPostEngineInitDelegateHandle;
+	TStrongObjectPtr<UPluginTemplateEditor> PluginTemplateEditor;
 };
